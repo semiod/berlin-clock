@@ -27,10 +27,10 @@ pipeline {
                 }
             }
         }
-        stage ('deploy'){
+         stage ('deploy'){
             steps{
                 configFileProvider([configFile(fileId: 'our_settings', variable: 'SETTINGS')]) {
-                    sh "mvn -s $SETTINGS deploy -DskipTests"
+                    sh "mvn -s $SETTINGS deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
                 }
             }
         }
